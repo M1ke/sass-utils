@@ -1,0 +1,93 @@
+@mixin fieldsetAlign($inputWidth:194px,$labelMargin: 140px) {
+	overflow: hidden;
+	input,select {
+		display: block; width: $inputWidth; float: left; margin-bottom: 10px;
+	}
+	input {
+		&.short {
+			width: 50px;
+		}
+		&.submit {
+			width: 350px; margin-left: 30px; clear: left;
+			&.inline { 
+				margin-left: 150px; width: 200px;
+			}
+		}
+	}
+	select {
+		width: 201px;
+		&.short {
+			width: 60px !important;
+		}
+	}
+	textarea {
+		display: inline; width: 194px; float: none; padding: 3px; margin-bottom: 5px;
+	}
+	label {
+		display: block; float: left; margin-bottom: 10px; padding: 3px 10px 0 0; width: $labelMargin;
+		text-align: right;
+		&.line {
+			width: auto; margin-left: 20px;
+		}
+	}
+	div.smalls {
+		float: left; width: 600px; clear: none;
+	}
+	div.small {
+		float: left;
+		input {
+			width: auto; margin: 6px 8px 10px 0;
+		}
+		label {
+			width: auto; margin-right: 10px;
+		}
+	}
+	@media only screen and (max-width: 600px) {
+		div.smalls {
+			width: auto;
+		}
+		div.small {
+			float: none;
+		}
+	}
+	div > span {
+		display: block; float: left; margin: 0 10px;
+		&.error { margin: 0;
+			input, select, textarea, div.smalls {
+				margin-right: 10px;
+			}
+		}
+	}
+	ul {
+		list-style: none;
+	}
+	p {
+		margin-bottom: 8px;
+		&.image {
+			padding-left: 150px;
+		}
+		input {
+			float: none; display: inline; width: 50px;
+		}
+	}
+	> div,br {
+		clear: left; overflow: hidden;
+	}
+	@media only screen and (max-width: 600px) {
+		.error strong {
+			float: left; margin-bottom: 10px;
+		}
+	}
+	@media only screen and (max-width: 400px) {
+		input,select,textarea {
+			width: 100%;
+			&.submit {
+				width: 100%; margin-left: 0;
+			}
+		}
+		label {
+			text-align: left;
+			width: auto;
+		}
+	}
+}

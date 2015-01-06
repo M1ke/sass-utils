@@ -1,0 +1,102 @@
+@import "_forms-align";
+
+table {
+	th {
+		font-weight: bold;
+		padding: 0 7px 5px;
+	}
+	td {
+		padding: 2px 7px;
+	}
+}
+ul.pages {
+	list-style: none !important; overflow: hidden;
+	li {
+		float: left; margin-right: 10px;
+		&.current a,&.sel a {
+			text-decoration: underline;
+		}
+	}
+}
+
+/* input,textarea,select {
+	border: 1px solid #b1b1b1;
+	&:hover, &:focus { border-color: #000;}
+}
+input.submit {
+	padding: 3px; cursor: pointer;
+}
+textarea {
+	font-family: arial; font-size: 0.9em;
+	width: 100%;
+} */
+input.submit {
+	cursor: pointer;
+}
+
+fieldset {
+	&.align { margin: 10px 20px 0;
+		@include fieldsetAlign;
+	}
+	&.text {
+		margin: 10px 20px 0;
+		br {
+			display: none;
+		}
+		fieldset br {
+			display: block;
+		}
+		label {
+			display: block; margin-bottom: 10px; margin-top: 5px;
+		}
+		input.submit {
+			width: 100%; margin-top: 2px; padding: 3px;
+		}
+		@media only screen and (max-width: 400px) {
+			textarea {
+				width: 98%;
+			}
+		}
+	}
+	&.extra {
+		* {
+			display: block; float: left;
+		}
+		label {
+			width: 140px; margin: 10px 0;
+			text-align: center;
+			&.val {
+				width: 200px;
+			}
+		}
+		input {
+			&.key {
+				clear: left; margin: 0 10px 10px 20px; width: 120px;
+			}
+			&.val {
+				width: 200px; margin-right: 5px;
+			}
+		}
+		a {
+			padding: 3px 1px; margin-top: 1px;
+		}
+	}
+	&.inline {
+		div, input.submit {
+			float: left; margin: 0 1px 5px 0;
+		}
+		input {
+			margin: 0 10px 0 5px; width: 100px;
+			&.search-date {
+				width: 70px;
+			}
+		}
+		select {
+			margin: 0 10px 0 5px; max-width: 50px;
+		}
+		.short {
+			width: 30px;
+			text-align: center;
+		}
+	}
+}
