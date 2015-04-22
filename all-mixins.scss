@@ -1,0 +1,58 @@
+@import "gradient-mixins";
+@import "box-mixins";
+@import "sticky-footer";
+@import "iframe-responsive";
+
+@mixin event {
+	&:hover, &:focus, &:active {
+		@content;
+	}
+}
+
+@mixin fontSize($pt:16){
+	$pt: ($pt/(($fontBase/100)*16))+0em;
+	font-size: $pt;
+}
+
+@mixin boxShadow($horiz: 5px,$vert: 5px,$fade: 5px,$color: rgba(0,0,0,1),$inset:'') {
+	box-shadow: $inset $horiz $vert $fade $color;
+	-o-box-shadow: $inset $horiz $vert $fade $color;
+}
+
+@mixin placeholderColor($color:#000,$hide:0){
+	&::-webkit-input-placeholder {
+		color: $color;
+	}
+	&:-moz-placeholder {
+		color: $color;
+	}
+	@if ($hide == 1) {
+		&:focus::-webkit-input-placeholder {
+			text-indent: -9999em;
+		}
+		&:focus:-moz-placeholder {
+			text-indent: -9999em;
+		}
+	}
+}
+
+@mixin trans($alpha: 0.4,$color:#000) {
+	$rgba: rgba($color, $alpha);
+	$ieAlpha: hex_num($alpha*255); 
+	background-color: $rgba;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#000000#{$ieAlpha},endColorstr=#000000#{$ieAlpha});
+}
+
+@mixin overlay($top:0,$left:0) {
+	$top: $top * 1px;
+	$left: $left * 1px;
+	position: absolute; @include _100; top: $top; left: $left;
+}
+
+@mixin clearfix {
+	*zoom:1;
+	&::after {
+		content:"";
+		display:table; clear:both
+	}
+}

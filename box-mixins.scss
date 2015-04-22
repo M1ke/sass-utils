@@ -1,0 +1,21 @@
+@mixin inlineBreak($line-height: 0) {
+	@if $line-height == 1 {
+		line-height: normal;
+	}
+	&:before {
+		white-space: pre; content: '\A';
+	}
+}
+
+@mixin heightPadding($height,$padding) {
+	height: $height - $padding + px; padding-top: $padding + px;
+}
+
+@mixin _100 {
+	width: 100%; height: 100%;
+}
+
+@mixin padTop($padding,$height){
+	$height: $height - $padding;
+	height: $height; padding-top: $padding;
+}
