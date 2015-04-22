@@ -48,3 +48,11 @@
 	$left: $left * 1px;
 	position: absolute; @include _100; top: $top; left: $left;
 }
+
+@mixin clearfix {
+	*zoom:1;
+	&::after {
+		content:"";
+		display:table; clear:both
+	}
+}
