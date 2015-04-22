@@ -1,0 +1,70 @@
+@import "compass/css3/images";
+
+@mixin gradientFallback($top,$bottom){
+	background: ($top + $bottom)/2;
+}
+
+@mixin vertGradient($top,$bottom,$switch:0) {
+	@if ($switch == 1) {
+		$temp: $top;
+		$top: $bottom;
+		$bottom: $temp;
+	}
+	@include gradientFallback($top,$bottom);
+	background-image: -moz-linear-gradient(top,$top 0%,$bottom 100%); /* FF3.6+ */
+	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0%,$top),color-stop(100%,$bottom)); /* Chrome,Safari4+ */
+	background-image: -webkit-linear-gradient(top,$top 0%,$bottom 100%); /* Chrome10+,Safari5.1+ */
+	background-image: -o-linear-gradient(top,$top 0%,$bottom 100%); /* Opera 11.10+ */
+	background-image: -ms-linear-gradient(top,$top 0%,$bottom 100%); /* IE10+ */
+	background-image: linear-gradient(top,$top 0%,$bottom 100%); /* W3C */
+	@include filter-gradient($top,$bottom,vertical);
+}
+
+@mixin gradientVertical($start,$end,$switch:0){
+	@if ($switch == 1) {
+		$temp: $start;
+		$start: $end;
+		$end: $temp;
+	}
+	@include gradientFallback($start,$end);
+	@include filter-gradient($start,$end,"vertical");
+	@include background(linear-gradient(top,$start,$end));
+}
+
+@mixin horizGradient($left,$right,$switch:0) {
+	@if ($switch == 1) {
+		$temp: $left;
+		$left: $right;
+		$right: $temp;
+	}
+	@include gradientFallback($left,$right);
+	background-image: -moz-linear-gradient(left,$left 0%,$right 100%); /* FF3.6+ */
+	background-image: -webkit-gradient(linear,top left,top right,color-sleft(0%,$left),color-sleft(100%,$right)); /* Chrome,Safari4+ */
+	background-image: -webkit-linear-gradient(left,$left 0%,$right 100%); /* Chrome10+,Safari5.1+ */
+	background-image: -o-linear-gradient(left,$left 0%,$right 100%); /* Opera 11.10+ */
+	background-image: -ms-linear-gradient(left,$left 0%,$right 100%); /* IE10+ */
+	background-image: linear-gradient(left,$left 0%,$right 100%); /* W3C */
+	@include filter-gradient($left,$right,horizontal);
+}
+
+@mixin angleGradient($top,$bottom,$deg:-45deg) {
+	@include gradientFallback($top,$bottom);
+	background-image: -moz-linear-gradient($deg,$top 0%,$bottom 100%); /* FF3.6+ */
+	background-image: -webkit-linear-gradient($deg,$top 0%,$bottom 100%); /* Chrome10+,Safari5.1+ */
+	background-image: -o-linear-gradient($deg,$top 0%,$bottom 100%); /* Opera 11.10+ */
+	background-image: -ms-linear-gradient($deg,$top 0%,$bottom 100%); /* IE10+ */
+	background-image: linear-gradient($deg,$top 0%,$bottom 100%); /* W3C */
+	@include filter-gradient($top,$bottom,horizontal);
+}
+
+@mixin radialGradient($in,$out,$inPercent:0,$outPercent:100,$focus:center) {
+	$inPercent:$inPercent * 1%;
+	$outPercent:$outPercent * 1%;
+	@include gradientFallback($in,$out);
+	background: -moz-radial-gradient($focus,ellipse cover,$in $inPercent,$out $outPercent);
+	background: -webkit-radial-gradient($focus,ellipse cover,$in $inPercent,$out $outPercent);
+	background: -o-radial-gradient($focus,ellipse cover,$in $inPercent,$out $outPercent);
+	background: -ms-radial-gradient($focus,ellipse cover,$in $inPercent,$out $outPercent);
+	background: radial-gradient($focus,ellipse cover, $in $inPercent,$out $outPercent);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($in)}',endColorstr='#{ie-hex-str($out)}',GradientType=1);
+}

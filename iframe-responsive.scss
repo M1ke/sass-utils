@@ -1,0 +1,22 @@
+@mixin iframeResponsive($height:0) {
+	width: 100%; margin: 0 auto;
+	background: #ffffff;
+	@if $height == 1 {
+		height: 100%;
+	}
+	div.container {
+		position: relative;
+	}
+	.ratio {
+		display: block; height: auto;
+		@if $height == 1 {
+			width: 100%;
+		}
+	}
+	iframe {
+		position: absolute; top: 0; left: 0; width: 100%;
+		@if $height == 1 {
+			height: 100%;
+		}
+	}
+}
