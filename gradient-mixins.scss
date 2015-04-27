@@ -1,5 +1,3 @@
-@import "compass/css3/images";
-
 @mixin gradientFallback($top,$bottom){
 	background: ($top + $bottom)/2;
 }
@@ -17,18 +15,11 @@
 	background-image: -o-linear-gradient(top,$top 0%,$bottom 100%); /* Opera 11.10+ */
 	background-image: -ms-linear-gradient(top,$top 0%,$bottom 100%); /* IE10+ */
 	background-image: linear-gradient(top,$top 0%,$bottom 100%); /* W3C */
-	@include filter-gradient($top,$bottom,vertical);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($top)}',endColorstr='#{ie-hex-str($bottom)}',GradientType=1);
 }
 
 @mixin gradientVertical($start,$end,$switch:0){
-	@if ($switch == 1) {
-		$temp: $start;
-		$start: $end;
-		$end: $temp;
-	}
-	@include gradientFallback($start,$end);
-	@include filter-gradient($start,$end,"vertical");
-	@include background(linear-gradient(top,$start,$end));
+	@include vertGradient($start,$end,$switch);
 }
 
 @mixin horizGradient($left,$right,$switch:0) {
@@ -44,7 +35,7 @@
 	background-image: -o-linear-gradient(left,$left 0%,$right 100%); /* Opera 11.10+ */
 	background-image: -ms-linear-gradient(left,$left 0%,$right 100%); /* IE10+ */
 	background-image: linear-gradient(left,$left 0%,$right 100%); /* W3C */
-	@include filter-gradient($left,$right,horizontal);
+	//@include filter-gradient($left,$right,horizontal);
 }
 
 @mixin angleGradient($top,$bottom,$deg:-45deg) {
@@ -54,7 +45,7 @@
 	background-image: -o-linear-gradient($deg,$top 0%,$bottom 100%); /* Opera 11.10+ */
 	background-image: -ms-linear-gradient($deg,$top 0%,$bottom 100%); /* IE10+ */
 	background-image: linear-gradient($deg,$top 0%,$bottom 100%); /* W3C */
-	@include filter-gradient($top,$bottom,horizontal);
+	//@include filter-gradient($top,$bottom,horizontal);
 }
 
 @mixin radialGradient($in,$out,$inPercent:0,$outPercent:100,$focus:center) {
